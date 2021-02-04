@@ -1,0 +1,52 @@
+﻿@using WebProje.Entities
+@model List<Note>
+
+
+@{
+    ViewBag.Title = "About";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="~/css/shop-homepage.css" rel="stylesheet" />
+<h2></h2>
+<!--Ana Sayfa Sabit içerik kısmı-->
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <!--Kategoriler Kısmımız-->
+            @Html.Partial("_PartialCategories")
+        </div>
+        <!-- Orta Sabit Kısmı -->
+        <!-- /.col-lg-3 -->
+        <div class="col-lg-9">
+            <!--carousel-->
+
+            <div>
+                <h2 class="text-center">Hakkımızda</h2>
+                <hr />
+                <div align="center">
+                    <img src="http://placehold.it/500x250" class="center-block img-responsive img-rounded img-thumbnail" alt="Alternate Text" />
+                </div>
+                <hr />
+                <p>
+
+                    - Makale ve Resim paylaşım yapılabilen örnek sosyal platforumdur.<br />
+                    - Siyasi içerik paylaşmak yasaktır.<br />
+                    - Küfür ve Etnik dışı davranışlarda bulunmak yasaktır.<br />
+                    - İnsanlık kuralları dışı içerik paylaşmak yasaktır.<br />
+                    - İnsanların sosyal,ahlak,kültürel yaşamını etkileyecek içerik paylaşmak yasaktır.<br />
+                    
+                </p>
+            </div>
+
+            <!-- /.row -->
+        </div>
+        <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
+</div>
+
+@section footer{
+    @Html.Partial("_PartialFooter")
+}

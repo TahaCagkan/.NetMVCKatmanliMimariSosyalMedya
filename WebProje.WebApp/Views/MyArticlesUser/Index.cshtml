@@ -1,0 +1,134 @@
+﻿@model IEnumerable<WebProje.Entities.MyArticlesUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-offset-1">
+
+        </div>
+
+        <div class="col-md-11 ">
+            <br />
+            <h2>Kullanıcı</h2>
+
+        </div>
+
+    </div>
+    <hr />
+
+
+    <div class="col-md-12">
+
+        <p>
+            <a href="/MyArticlesUser/Create" class="btn btn-success">
+                <span class="fas fa-plus"></span> Oluştur
+            </a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Surname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProfileImageFilename)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                
+                <th>
+                    @Html.DisplayNameFor(model => model.IsAdmin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedUsername)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProfileImageFilename)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsAdmin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModifiedUsername)
+                    </td>
+                    <td width="250">
+
+                        <a href="/MyArticlesUser/Edit/@item.Id" class="btn btn-warning btn-xs" title="Düzenle">
+                            <span class="fas fa-edit"></span>
+                        </a>
+                        <br />
+                        <br />
+                        <a href="/MyArticlesUser/Details/@item.Id" class="btn btn-info btn-xs" title="Detaylar">
+                            <span class="fas fa-search"></span>
+                        </a>
+                        <br />
+                        <br />
+                        <a href="/MyArticlesUser/Delete/@item.Id" class="btn btn-danger btn-xs" title="Sil">
+                            <span class="fas fa-trash"></span>
+                        </a>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+

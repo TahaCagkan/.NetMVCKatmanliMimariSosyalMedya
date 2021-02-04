@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebProje.Entities.Category>
+
+@{
+    ViewBag.Title = "Kategoriler";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-offset-1">
+
+        </div>
+
+        <div class="col-md-11 ">
+            <br />
+            <h2>Kategoriler</h2>
+
+        </div>
+
+    </div>
+    <hr />
+
+
+        <div class="col-md-12">
+
+            <p>
+                <a href="/Category/Create" class="btn btn-success">
+                    <span class="fas fa-plus"></span> Oluştur
+                </a>
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ModifiedOn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ModifiedUsername)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedOn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifiedUsername)
+                        </td>
+                        <td>
+
+                            <a href="/Category/Edit/@item.Id" class="btn btn-warning btn-xs" title="Düzenle">
+                                <span class="fas fa-edit"></span> 
+                            </a>|
+
+                            <a href="/Category/Details/@item.Id" class="btn btn-info btn-xs" title="Detaylar">
+                                <span class="fas fa-search"></span> 
+                            </a>|
+
+                            <a href="/Category/Delete/@item.Id" class="btn btn-danger btn-xs" title="Sil">
+                                <span class="fas fa-trash"></span> 
+                            </a>
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+

@@ -1,0 +1,29 @@
+﻿@using WebProje.BusinessLayer
+@using WebProje.Entities
+@using WebProje.WebApp.Models
+
+@{
+    @*
+        //CategoryManager oluşturduk
+        CategoryManager cm = new CategoryManager();
+        //GetCategories List ulaşarak,Burda list değişkeni içerisine alınıyor.
+        List<Category> list = cm.List();
+    *@
+
+        List<Category> list = CacheHelper.GetCategoriesFromCache();
+
+}
+
+
+<h1 class="my-4">Kategoriler</h1>
+<!-- Kategori  Kolonu-->
+<div class="list-group">
+    <a href="@Url.Action("Index","Home")" class="list-group-item" style="text-decoration: none;"><span class="fas fa-arrow-right"></span> Tümü</a>
+    <!--Category class içerindeki list örneklediğimizi bura içerisinde dön-->
+    @foreach (Category cat in list)
+    {
+        <!--ilgili Category control altında Select actionda parametre olarak id döncek  git sonra Title göster-->
+        <a href="/Home/ByCategory/@cat.Id" title="@cat.Description" class="list-group-item" style="text-decoration: none;"><span class="fas fa-arrow-right"></span> @cat.Title</a>
+    }
+
+</div>

@@ -1,0 +1,62 @@
+﻿@using WebProje.Entities.Messages
+@using WebProje.WebApp.ViewModels
+@model ErrorViewModel
+
+@{
+
+
+    ViewBag.Title = Model.Title;
+}
+<link href="~/Content/login-register.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+@using (Html.BeginForm())
+{
+
+    <div class="login-box">
+        <div class="login-header">
+            <h1 class="text-center">@Model.Header</h1>
+        </div>
+
+        <form class="form-group">
+            <div class="text-danger">
+
+                <h2>&nbsp;<span class="fas fa-times"></span>&nbsp;<label><b>@Model.Title</b></label></h2>
+                <hr />
+                <p class="text-justify">
+                    <!--Herbir Error içerisindeki göstericeğiz-->
+
+                    @foreach (ErrorMessageObj msg in Model.Items)
+                    {
+                        @msg.Message<br />
+                    }
+                </p>
+
+            </div>
+
+        </form>
+    </div>
+}
+
+@{
+    string js = string.Empty;
+
+    if (Model.IsRedirecting)
+    {
+        js = "setTimeout(function () {window.location = '" + Model.RedirectingUrl + "'; }, " + Model.RedirectingTimeout + ");";
+    }
+}
+
+
+<script>
+    $(function () {
+
+        @Html.Raw(js);
+
+    });
+</script>

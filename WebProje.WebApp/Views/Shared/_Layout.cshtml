@@ -1,0 +1,208 @@
+﻿@using WebProje.WebApp
+@using WebProje.Entities
+@using WebProje.WebApp.Models
+
+<style>
+    ul li a:link {
+        color: black;
+    }
+</style>
+
+<!DOCTYPE html>
+<html>
+<!--Başlık Kısmı-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/css/shop-homepage.css" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<!--Body Kısmı-->
+<body>
+
+    
+
+        <!--Menümüzdeki kullanıcı adı oturum açtığı zaman Session bilgilerini gösterme işlemi-->
+        @*
+            MyArticlesUser user = null;
+            <!--Session boş değilse kullanıcı bilgilerini al-->
+            if (Session["login"] != null)
+            {
+                user = Session["login"] as MyArticlesUser;
+            }
+        *@
+
+
+    
+
+    <!--Menümüz-->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index">My Articles</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav">
+                    @if (CurrentSession.User != null)
+                    {
+
+                        <li class="nav-item dropdown">
+                            <a href="/Note/MyNotes" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fas fa-wrench"></span> Yönetici<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a href="/Note/Create" style=" color: black">
+                                        <span class="fas fa-plus">Not Ekle</span>
+                                    </a>
+                                </li>
+                                <hr />
+                                <li>
+                                    <a href="/Note/Index" style=" color: black">
+                                        <span class="fas fa-list">Notlarım</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/Note/MyLikedNotes" style=" color: black">
+                                        <span class="fas fa-heart">Beğendiklerim</span>
+                                    </a>
+                                </li>
+                                <hr />
+
+                                @if (CurrentSession.User.IsAdmin)
+                                {
+                                    <li>
+                                        <a href="/Category/Create" style=" color: black">
+                                            <span class="fas fa-plus">Kategori Ekle</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/Category/Index" style=" color: black">
+                                            <span class="fas fa-list">Kategoriler</span>
+                                        </a>
+                                    </li>
+                                }
+
+                                <hr />
+
+                                @if (CurrentSession.User.IsAdmin)
+                                {
+                                    <li>
+                                        <a href="/MyArticlesUser/Create" style=" color: black">
+                                            <span class="fas fa-plus">Kullanıcı Ekle</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/MyArticlesUser/Index" style=" color: black">
+                                            <span class="fas fa-list">Kulanıcılar</span>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+
+
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/MostLiked">
+                            <i class="far fa-heart"></i> En Beğenilen
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Index">
+                            <i class="fas fa-list"></i> Son Yazılar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/About">
+                            <i class="fas fa-info-circle"></i> Hakkımızda
+                        </a>
+                    </li>
+                </ul>
+
+
+                <ul class="navbar-nav ml-auto">
+                    <!--Kullanıcı Yoksa göster-->
+                    @if (CurrentSession.User == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Login">
+                                <i class="fas fa-sign-in-alt"></i> Giriş
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Register">
+                                <i class="fas fa-user"></i> Üye Ol
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <!--Kullanıcı var ise bunları göster-->
+
+                        <li class="nav-item dropdown">
+                            <a href="/Home/ShowProfile" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fas fa-user"></span> @CurrentSession.User.Username<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a href="/Home/ShowProfile" style="color:black">
+                                        <span class="fas fa-user"> Profili Göster </span>
+                                    </a>
+                                </li>
+                                <hr />
+
+                                <li>
+                                    <a href="/Home/EditProfile" style="color:black">
+                                        <span class="fas fa-edit"> Profili Düzenle </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="Home/DeleteProfile" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz?');">
+                                        <span class="fas fa-trash" style="color:red"> Profili Sil </span>
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/Logout">
+                                <i class="fas fa-sign-out-alt"></i> Çıkış
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Sayfa Content var index.html içerisinde-->
+    <!--RenderBody() index.html içerisindeki HTML alıp buraya yerleştirmeye yarıyor-->
+    @RenderBody()
+
+    <!--Render Section ile footer Partial olarak yönlendirdi bu sürekli açılmasın diye yapıldı-->
+
+    @RenderSection("footer", required: false)
+</body>
+</html>

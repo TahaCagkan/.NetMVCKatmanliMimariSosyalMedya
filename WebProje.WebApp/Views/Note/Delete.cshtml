@@ -1,0 +1,116 @@
+﻿@model WebProje.Entities.Note
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<div class="container">
+
+    <div class="col-md-2">
+        <h2>Sil</h2>
+
+    </div>
+    <br />
+    <h4>Silmek istediğinize eminmisiniz?</h4>
+    <div class="col-md-8">
+
+    </div>
+    <div class="row">
+
+
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            <hr />
+            <h4>Notlar</h4>
+            <hr />
+
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Category.Title)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Category.Title)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Text)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Text)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IsDraft)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.IsDraft)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LikeCount)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.LikeCount)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.CreatedOn)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ModifiedOn)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ModifiedOn)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ModifiedUsername)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ModifiedUsername)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-danger">
+                                <span class="fas fa-times">&nbsp;</span>Sil
+                            </button>
+                            @Html.ActionLink("Listeye Geri Dön", "Index", "Note", null, new { @class = "btn btn-secondary" })
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

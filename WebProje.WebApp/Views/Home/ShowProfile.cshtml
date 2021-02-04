@@ -1,0 +1,75 @@
+﻿@using WebProje.Entities
+@model MyArticlesUser
+
+@{
+    ViewBag.Title = "Profiliniz";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link href="~/css/shop-homepage.css" rel="stylesheet" />
+
+<br />
+<div class="container">
+
+    <!--Başlık Kısmı-->
+    <div class="row">
+
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <hr />
+    <div class="row">
+
+        <!--Profil Resmi-->
+        <div class="col-md-3">
+            <img src="~/Images/@Model.ProfileImageFilename" class="img-circle" width="128" height="128" />
+        </div>
+
+        <div class="col-md-6">
+
+
+            <!--Kullanıcı Ad,Soyad,Email bilgilerini farklı bir satırda göstericeğiz-->
+            <h3>@(Model.Name + " " + Model.Surname)</h3>
+            <br />
+            <h5><b>@Html.DisplayNameFor(model => model.Username) : </b>@Model.Username</h5>
+            <h5><b>@Html.DisplayNameFor(model => model.Email) : </b>@Model.Email</h5>
+            <br />
+            <h5><a href="#">More...</a></h5>
+        </div>
+
+        <!--DropDown List ile kullanıcıları bilgilerini Edit ve Silme işlemleri-->
+        @*
+        <div class="col-md-3 text-right">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+
+                    <span class="fas fa-cog">&nbsp;</span> Seçenekler
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="@Url.Action("EditProfile")">
+                            <span class="fas fa-edit">&nbsp;</span> Düzenle
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("DeleteProfile")" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz?');">
+                            <span class="fas fa-trash">&nbsp;</span>Sil
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        *@
+    </div>
+</div>
+
+<!--
+
+    <script>
+        $(function () {
+
+        $("footer").hide();
+
+        });
+    </script>
+    -->

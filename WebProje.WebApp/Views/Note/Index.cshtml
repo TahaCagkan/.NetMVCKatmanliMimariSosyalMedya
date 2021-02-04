@@ -1,0 +1,106 @@
+﻿@model IEnumerable<WebProje.Entities.Note>
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+<div class="container">
+
+
+    <div class="row">
+        <div class="col-md-offset-1">
+
+        </div>
+
+        <div class="col-md-11 ">
+            <br />
+            <h2>Notlar</h2>
+
+        </div>
+
+    </div>
+    <hr />
+
+
+    <div class="col-md-12">
+
+        <p>
+            <a href="/Note/Create" class="btn btn-success">
+                <span class="fas fa-plus"></span> Oluştur
+            </a>
+        </p>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDraft)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LikeCount)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsDraft)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LikeCount)
+                    </td>
+
+                    <td width="250">
+                        <button type="button" class="btn btn-success btn-xs" title="Yorum" data-toggle="modal" data-target="#modal_comment" data-note-id="@item.Id">
+                            <span class="fas fa-comment"></span>
+                        </button>|
+
+                        <a href="/Note/Edit/@item.Id" class="btn btn-warning btn-xs" title="Düzenle">
+                            <span class="fas fa-edit"></span>
+                        </a>|
+
+                        <a href="/Note/Details/@item.Id" class="btn btn-info btn-xs" title="Detaylar">
+                            <span class="fas fa-search"></span>
+                        </a>|
+
+                        <a href="/Note/Delete/@item.Id" class="btn btn-danger btn-xs" title="Sil">
+                            <span class="fas fa-trash"></span>
+                        </a>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+
+
+@Bootstrap.ModalPoup(id: "modal_comment", title: "Yorumlar")
+
+<script src="~/Scripts/comment.js"></script>
